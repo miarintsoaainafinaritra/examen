@@ -1,0 +1,27 @@
+CREATE TABLE Ingredient (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+    unit VARCHAR(50),
+    stock DECIMAL(10,2) DEFAULT 0
+);
+
+CREATE TABLE Dish (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+    price DECIMAL(10,2)
+);
+
+CREATE TABLE `Order` (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    reference VARCHAR(50) UNIQUE,
+    customer VARCHAR(255),
+    total DECIMAL(10,2),
+    status ENUM('UNPAID','PAID') DEFAULT 'UNPAID'
+);
+
+CREATE TABLE Sale (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT UNIQUE,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (order_id) REFERENCES `Order`(id)
+);
