@@ -76,7 +76,7 @@ public class DataRetriever {
         }
         return null;
     }
-    
+
     public Sale createSaleFrom(Order order) {
         if (order.getPaymentStatus() != Order.PaymentStatus.PAID) {
             throw new IllegalStateException("Vente impossible : commande non payée");
@@ -104,7 +104,6 @@ public class DataRetriever {
             throw new IllegalStateException("Erreur création vente: " + e.getMessage());
         }
     }
-    
     private boolean saleExistsForOrder(Integer orderId) {
         String sql = "SELECT COUNT(*) FROM Sale WHERE order_id = ?";
         try (Connection conn = DBConnection.getConnection();
